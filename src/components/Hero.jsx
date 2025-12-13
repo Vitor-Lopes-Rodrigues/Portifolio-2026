@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
 import DynamicHero3D from "./canvas/DynamicHero3D";
+// 1. Importe o hook do tema
+import { useTheme } from "../context/ThemeContext";
 
 const Hero = () => {
+    // 2. Use o tema
+    const { theme } = useTheme();
+
     return (
         <section className="relative w-full h-screen mx-auto flex flex-col md:flex-row items-center justify-center overflow-hidden">
             <div className="flex flex-col justify-center items-start w-full md:w-1/2 px-6 md:px-16 z-10 pointer-events-none">
@@ -22,10 +27,13 @@ const Hero = () => {
                 </div>
             </div>
 
-            {/* O novo componente 3D ocupa toda a tela ao fundo */}
-            <div className="absolute top-0 left-0 w-full h-full z-0">
-                <DynamicHero3D />
-            </div>
+            {/* 3. Renderização Condicional: Só mostra o 3D se for SPACE */}
+            {theme === 'space' && (
+                <div className="absolute top-0 left-0 w-full h-full z-0">
+                    <DynamicHero3D />
+                </div>
+            )}
+
 
             {/* Scroll indicator */}
             <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center z-10 pointer-events-none'>

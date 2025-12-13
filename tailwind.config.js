@@ -7,11 +7,12 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: "#050816",
-                secondary: "#aaa6c3",
-                tertiary: "#151030",
-                "neon-purple": "#915eff",
-                "neon-cyan": "#00d4ff",
+                primary: "var(--bg-primary)",
+                secondary: "var(--text-secondary)",
+                tertiary: "var(--bg-tertiary)",
+                "neon-purple": "var(--accent-main)",
+                "neon-cyan": "var(--accent-sub)",
+                white: "var(--text-primary)",
             },
             backgroundImage: {
                 "hero-pattern": "url('/src/assets/herobg.png')",

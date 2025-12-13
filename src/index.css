@@ -1,7 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* --- TEMA SPACE (Padrão) --- */
+  --bg-primary: #050816;   /* Fundo principal escurão */
+  --bg-tertiary: #151030;  /* Fundo dos cards */
+  --text-primary: #ffffff;
+  --text-secondary: #aaa6c3;
+  --accent-main: #915eff;  /* Roxo Neon principal */
+  --accent-sub: #00d4ff;   /* Ciano Neon secundário */
+  --font-main: 'Poppins', sans-serif;
+
+  /* Textura sutil para o espaço (pontinhos quase invisíveis) */
+  --bg-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239c92ac' fill-opacity='0.05' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* --- TEMA GAMING (Tactical/Military) --- */
+.theme-gaming {
+  /* MUDANÇA CRITICA: O fundo precisa mudar para preto/cinza tático */
+  --bg-primary: #121212;
+  --bg-tertiary: #1e1e24;  /* Cards cinza chumbo */
+  --text-primary: #e6e6e6; /* Branco um pouco mais "sujo" */
+  --text-secondary: #8f9ba7; /* Cinza azulado */
+
+  --accent-main: #ff6b00;  /* Laranja Tático */
+  --accent-sub: #4caf50;   /* Verde Militar */
+  --font-main: 'Rajdhani', sans-serif; /* Fonte Gamer */
+
+  /* Textura de Grid Tático para o fundo */
+  --bg-texture: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff6b00' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* --- ESTILOS DOS CARDS GAMER (Cantos Cortados) --- */
+.theme-gaming .rounded-2xl,
+.theme-gaming .rounded-xl,
+.theme-gaming .rounded-lg {
+  border-radius: 4px !important;
+  border: 1px solid var(--accent-main);
+  /* Clip-path para criar o efeito "Sci-Fi Cut" nos cantos */
+  clip-path: polygon(
+          0 10px, 10px 0,
+          calc(100% - 10px) 0, 100% 10px,
+          100% calc(100% - 10px), calc(100% - 10px) 100%,
+          10px 100%, 0 calc(100% - 10px)
+  );
+  background: rgba(255, 107, 0, 0.05); /* Fundo laranja sutil dentro dos cards */
+}
+
+/* Efeito de Hover Brilhante */
+.theme-gaming .hover\:border-neon-purple:hover {
+  border-color: var(--accent-main);
+  box-shadow: 0 0 15px var(--accent-main);
+  position: relative;
+}
+
+/* Scanline Animada (A linha que desce) */
+.theme-gaming .group:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-main);
+  box-shadow: 0 0 10px var(--accent-main);
+  animation: scanline 1.5s linear infinite;
+  opacity: 0.5;
+  pointer-events: none; /* Importante para não bloquear cliques */
+}
+
+@keyframes scanline {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* Botões quadrados no modo gamer */
+.theme-gaming .rounded-full {
+  border-radius: 4px !important;
+}
+
+/* --- GERAL --- */
 * {
   margin: 0;
   padding: 0;
@@ -10,49 +91,42 @@
 }
 
 body {
-  background-color: #050816;
-  color: white;
+  background-color: #000;
+  color: var(--text-primary);
+  font-family: var(--font-main);
   overflow-x: hidden;
+  transition: color 0.5s ease;
 }
 
-/* Scrollbar personalizada */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #050816;
-}
-::-webkit-scrollbar-thumb {
-  background: #915eff;
-  border-radius: 5px;
+/* Textura de fundo (Overlay) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--bg-texture);
+  pointer-events: none;
+  z-index: -2;
+  opacity: 0.4; /* Opacidade controlada */
 }
 
-/*!* Adicione no final do index.css *!*/
-/*.green-pink-gradient {*/
-/*  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);*/
-/*  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);*/
-/*}*/
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--accent-main); border-radius: 5px; }
 
-/*.shadow-card {*/
-/*  box-shadow: 0px 35px 120px -15px #211e35;*/
-/*}*/
-
+/* Gradients que respeitam as variáveis */
+.green-pink-gradient {
+  background: linear-gradient(90.13deg, var(--accent-sub) 1.9%, var(--accent-main) 97.5%);
+}
+.hexagon-gradient {
+  background: linear-gradient(135deg, var(--accent-sub) 0%, var(--accent-main) 100%);
+  padding: 2px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); transition: all 0.3s ease;
+}
 .hexagon-shape {
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background: rgba(21, 16, 48, 0.7); /* Fundo semi-transparente */
-  backdrop-filter: blur(10px); /* Efeito de vidro */
-}
-
-/* Borda brilhante simulada */
-.hexagon-gradient {
-  background: linear-gradient(135deg, #00d4ff 0%, #915eff 100%);
-  padding: 2px; /* Espessura da borda */
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  transition: all 0.3s ease;
-}
-
-.hexagon-gradient:hover {
-  background: linear-gradient(135deg, #ffffff 0%, #00d4ff 100%);
-  filter: drop-shadow(0 0 20px #00d4ff);
-  transform: scale(1.05);
+  background: var(--bg-tertiary);
+  backdrop-filter: blur(10px);
 }

@@ -1,7 +1,6 @@
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
-import * as random from 'maath/random/dist/maath-random.esm';
 
 const SpeedTunnel = (props) => {
     const ref = useRef();
@@ -50,9 +49,7 @@ const SpeedTunnel = (props) => {
 
 const DynamicHero3D = () => {
     return (
-        <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
-            <color attach="background" args={['#050816']} />
-            <fog attach="fog" args={['#050816', 3, 12]} /> {/* Adiciona neblina para profundidade */}
+        <Canvas camera={{ position: [0, 0, 5], fov: 60 }} gl={{ alpha: true }}>
             <ambientLight intensity={0.5} />
             <SpeedTunnel />
         </Canvas>
