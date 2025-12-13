@@ -7,8 +7,8 @@ const Blob = () => {
 
     useFrame(({ clock }) => {
         const t = clock.getElapsedTime();
-        meshRef.current.rotation.x = t * 0.2;
-        meshRef.current.rotation.y = t * 0.2;
+        meshRef.current.rotation.x = t * 0.1;
+        meshRef.current.rotation.y = t * 0.1;
     });
 
     return (
@@ -17,7 +17,7 @@ const Blob = () => {
                 color="#915eff"
                 attach="material"
                 distort={0.5}
-                speed={2}
+                speed={1}
                 roughness={0}
             />
         </Sphere>

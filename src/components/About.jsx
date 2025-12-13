@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { services } from "../constants";
+import GitHubStats from "./GitHubStats";
+
 
 const ServiceCard = ({ index, title, icon: Icon }) => (
     <div className='xs:w-[250px] w-full'>
@@ -43,6 +45,11 @@ const About = () => {
                 Tenho experiência sólida no desenvolvimento de aplicações web, APIs robustas, refatoração de código legado e modelagem de banco de dados.
                 Gosto de criar soluções que unem performance técnica com uma excelente experiência de usuário.
             </motion.p>
+
+
+            <div className="my-12">
+                <GitHubStats />
+            </div>
 
             {/* Grid de Serviços (Cards) */}
             <div className='mt-20 flex flex-wrap gap-10 justify-center'>

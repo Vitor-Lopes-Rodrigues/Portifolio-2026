@@ -24,7 +24,7 @@ const SpeedTunnel = (props) => {
         ref.current.rotation.z += delta * 0.1;
         const positions = ref.current.geometry.attributes.position.array;
         for (let i = 0; i < positions.length; i += 3) {
-            positions[i + 2] += delta * 2; // Velocidade das partículas
+            positions[i + 2] += delta * 0.2; // Velocidade das partículas
             if (positions[i + 2] > 10) {
                 positions[i + 2] = -5; // Reinicia a posição lá atrás
             }
