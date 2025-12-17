@@ -37,7 +37,7 @@ const Experience = () => {
     return (
         <section id="experience" className="py-20 px-6 max-w-7xl mx-auto">
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
-                <p className="text-secondary text-center uppercase tracking-wider">O que eu já fiz</p>
+                <p className="text-secondary text-center uppercase tracking-wider">Bagagem profissional!</p>
                 <h2 className="text-white font-black text-center text-[40px] mb-16">Experiência Profissional.</h2>
             </motion.div>
 

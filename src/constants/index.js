@@ -1,6 +1,13 @@
-// src/constants/index.js
 import { Code2, Server, Database, Layout } from 'lucide-react';
 import { Linkedin, Instagram, Mail, MessageCircle } from 'lucide-react';
+import Mith from '../assets/images/Mith.png';
+import GerenciarEstoque from '../assets/images/GerenciarEstoque.png';
+import OdontologiaUsp from '../assets/images/OdontologiaUsp.png';
+import CopaDoMundo from '../assets/images/CopaDoMundo.png';
+import BraFrontEnd from '../assets/images/BrasillinkFrontEnd.png';
+import HorizonFly from '../assets/images/HorizonFly.png';
+
+
 
 export const navLinks = [
     { id: "about", title: "Sobre" },
@@ -13,12 +20,13 @@ export const projects = [
     {
         name: "Sistema de Gestão de Férias",
         description:
-            "Plataforma completa para RH gerenciar férias de colaboradores, incluindo aprovações de gestores, venda de dias e um gráfico de Gantt interativo para visualizar escalas de times. (Repositório fechado)",
+            "Plataforma completa para RH gerenciar férias de colaboradores, incluindo aprovações de gestores, venda de dias e um gráfico de Gantt interativo.",
         tags: [
             { name: "Angular", color: "text-red-500" },
             { name: "C#", color: "text-purple-500" },
             { name: "SQL Server", color: "text-blue-500" },
         ],
+        image: "https://placehold.co/600x400/BB1EEA/FFF?text=Projeto+Interno",
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues",
     },
     {
@@ -28,6 +36,7 @@ export const projects = [
         tags: [
             { name: "React", color: "text-cyan-400" },
         ],
+        image: Mith,
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/Mith-Influencers",
     },
     {
@@ -37,6 +46,7 @@ export const projects = [
         tags: [
             { name: "Angular", color: "text-red-500" },
         ],
+        image: BraFrontEnd,
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/BrasilInk",
     },
     {
@@ -46,6 +56,7 @@ export const projects = [
         tags: [
             { name: "Kotlin", color: "text-orange-400" },
         ],
+        image: "https://placehold.co/600x400/d97706/FFF?text=BrasilInk+API",
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/BrasilInk_Api",
     },
     {
@@ -56,6 +67,7 @@ export const projects = [
             { name: "Asp.Net", color: "text-indigo-400" },
             { name: "MySQL", color: "text-orange-300" },
         ],
+        image: HorizonFly,
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/Ecommerce_HorizonFly",
     },
     {
@@ -65,15 +77,17 @@ export const projects = [
         tags: [
             { name: "React + Vue", color: "text-emerald-400" },
         ],
+        image: OdontologiaUsp,
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/Odontologia_USP_Igor",
     },
     {
-        name: "Gerenciamento De Estoque",
+        name: "Gerenciamento Estoque",
         description:
-            "Projeto de gerenciamento (CRUD) de estoque com segurança de login e senha, utilizando variáveis internas para autenticação.",
+            "Projeto de gerenciamento (CRUD) de estoque com segurança de login e senha.",
         tags: [
             { name: "Python", color: "text-yellow-400" },
         ],
+        image: GerenciarEstoque,
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/Odontologia_USP_Igor",
     },
     {
@@ -85,6 +99,7 @@ export const projects = [
             { name: "PostgreSQL", color: "text-sky-400" },
             { name: "Docker", color: "text-blue-600" },
         ],
+        image: CopaDoMundo,
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/Projeto-Copa",
     },
 ];

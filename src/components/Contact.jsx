@@ -14,7 +14,7 @@ const Contact = () => {
                 className="text-center mb-16"
             >
                 <p className="text-secondary text-[14px] uppercase tracking-wider">Entre em contato</p>
-                <h3 className="text-white font-black text-[40px] md:text-[50px]">Vamos conversar.</h3>
+                <h3 className="text-white font-black text-[40px] md:text-[50px]">Bora tomar um cafezinho virtual?</h3>
                 <p className="mt-4 text-secondary text-[16px] max-w-xl mx-auto leading-[30px]">
                     Estou disponível para projetos freelance, oportunidades CLT ou apenas para trocar uma ideia sobre tecnologia.
                     Escolha sua plataforma preferida abaixo:
