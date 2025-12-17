@@ -125,6 +125,8 @@ export const experiences = [
             "Desenvolvimento web usando Angular 9+ (HTML, CSS, Typescript)"
         ],
     },
+
+
     {
         title: "Programador de Sistemas",
         company_name: "Cenpros",
