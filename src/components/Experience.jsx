@@ -9,7 +9,7 @@ const ExperienceCard = ({ experience, index }) => (
         className={`flex flex-col md:flex-row gap-4 mb-10 w-full ${index % 2 === 0 ? 'md:flex-row-reverse text-right' : 'text-left'}`}
     >
         <div className="w-full md:w-1/2 bg-[#1d1836] p-6 rounded-2xl border-b-4 border-neon-purple relative hover:shadow-[0_0_20px_rgba(145,94,255,0.2)] transition-shadow">
-            <h3 className="text-white text-[24px] font-bold">{experience.title}</h3>
+            <h3 className="text-white text-[24px]  font-bold">{experience.title}</h3>
             <p className="text-secondary text-[16px] font-semibold" style={{ margin: 0 }}>
                 {experience.company_name}
             </p>
@@ -20,7 +20,7 @@ const ExperienceCard = ({ experience, index }) => (
                     </li>
                 ))}
             </ul>
-            <span className="absolute -top-3 right-5 bg-neon-purple text-xs px-2 py-1 rounded">{experience.date}</span>
+            <span className="absolute -top-0 right-5 bg-neon-purple text-xs px-2 py-1 rounded">{experience.date}</span>
         </div>
 
         {/* Linha Central (Visual) */}
