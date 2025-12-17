@@ -186,7 +186,7 @@ export const socialLinks = [
     {
         name: "Email",
         icon: Mail,
-        link: "mailto:vitorlopes@email.com",
+        link: "mailto:vitorlopes758@email.com",
         color: "text-purple-500",
         hoverColor: "hover:shadow-[0_0_20px_#a855f7]", // Brilho Roxo
         btnColor: "bg-purple-600"
