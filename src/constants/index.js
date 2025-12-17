@@ -178,7 +178,7 @@ export const socialLinks = [
     {
         name: "Instagram",
         icon: Instagram,
-        link: "https://instagram.com/seu_usuario", // Seu instagram
+        link: "https://instagram.com/vitor_lopes_rodrigues",
         color: "text-pink-500",
         hoverColor: "hover:shadow-[0_0_20px_#ec4899]", // Brilho Rosa
         btnColor: "bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500"
