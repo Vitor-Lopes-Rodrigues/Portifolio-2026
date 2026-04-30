@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Database, BrainCircuit, LayoutDashboard } from "lucide-react";
+import Diploma from "../assets/images/Diploma.png";
 
 const futurePaths = [
     {
@@ -10,23 +11,29 @@ const futurePaths = [
         color: "bg-neon-purple",
         textColor: "text-neon-purple",
         status: "Calculando redes neurais...",
+        tagText: "Target Locked",
+        isActive: false,
     },
     {
         id: "ds",
-        title: "Cientista de Dados",
+        title: "Cientista de Dados com IA",
         icon: Database,
         color: "bg-blue-500",
         textColor: "text-blue-500",
         status: "Processando Big Data...",
+        tagText: "Target On",
+        isActive: true, // Ativa o brilho verde para o objetivo atual
     },
     {
         id: "fe",
         title: "Front End Engineer",
         icon: LayoutDashboard,
-        color: "text-cyan-400", // Usando texto colorido para este ícone
-        bgColor: "bg-cyan-400", // Cor da barra
+        color: "text-cyan-400",
+        bgColor: "bg-cyan-400",
         textColor: "text-cyan-400",
         status: "Renderizando interfaces...",
+        tagText: "Target Locked",
+        isActive: false,
     },
 ];
 
@@ -52,16 +59,21 @@ const GlitchBar = ({ color }) => (
     </div>
 );
 
-const PathCard = ({ title, icon: Icon, color, textColor, bgColor, status, index }) => {
+const PathCard = ({ title, icon: Icon, color, textColor, bgColor, status, index, tagText, isActive }) => {
     const barColor = bgColor || color;
     const iconColorClass = textColor || "text-white";
+
+    // Estilo dinâmico: verde neon se estiver ativo, cinza apagado se estiver trancado
+    const tagStyle = isActive
+        ? "text-green-400 border-green-400/50 shadow-[0_0_10px_rgba(74,222,128,0.2)] bg-green-400/10"
+        : "text-secondary/50 border-secondary/20";
 
     return (
         <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
-            className="bg-tertiary/50 border border-white/10 p-4 rounded-xl relative overflow-hidden group hover:border-white/30 transition-all"
+            className={`bg-tertiary/50 border ${isActive ? 'border-green-400/30' : 'border-white/10'} p-4 rounded-xl relative overflow-hidden group hover:border-white/30 transition-all`}
         >
 
             <motion.div
@@ -81,13 +93,14 @@ const PathCard = ({ title, icon: Icon, color, textColor, bgColor, status, index 
 
             <GlitchBar color={barColor} />
 
-            {/* Tag "Locked" */}
-            <div className="absolute top-2 right-2 text-[7.2px] font-mono uppercase tracking-widest text-secondary/50 border border-secondary/20 px-2 py-1 rounded">
-                Target Locked
+            {/* Tag Dinâmica (Target On / Target Locked) */}
+            <div className={`absolute top-2 right-2 text-[7.2px] font-mono uppercase tracking-widest px-2 py-1 rounded border ${tagStyle}`}>
+                {tagText}
             </div>
         </motion.div>
     );
 }
+
 const ComingSoon = () => {
     return (
         <section className="py-10 px-6 max-w-4xl mx-auto relative z-10 my-20">
@@ -102,28 +115,53 @@ const ComingSoon = () => {
                 {/* Título do Terminal */}
                 <div className="mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/10 pb-4">
                     <div>
-                        <p className="text-neon-cyan font-mono text-sm tracking-[0.2em] uppercase animate-pulse">
+                        <p className="text-cyan-400 font-mono text-sm tracking-[0.2em] uppercase animate-pulse">
                             &gt;&gt; Incoming Transmission...
                         </p>
                         <h3 className="text-white font-black text-2xl md:text-3xl mt-2">
-                            Próximos Objetivos: <span className="text-neon-purple">Pós-Graduação</span>
+                            Próximos Objetivos: <span className="text-neon-purple"> <br/> Pós-Graduação</span>
                         </h3>
                     </div>
-                    <div className="font-mono text-xs text-red-500 animate-pulse bg-red-500/10 px-3 py-1 rounded border border-red-500/30">
-                        [ STATUS: PENDENTE ]
+                    <div className="font-mono text-xs text-yellow-500 animate-pulse bg-red-500/10 px-4 py-1 rounded border border-red-500/30">
+                        [STATUS: EM DESENVOLVIMENTO]
                     </div>
                 </div>
 
                 {/* Grid dos Caminhos Futuros */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
                     {futurePaths.map((path, index) => (
                         <PathCard key={path.id} index={index} {...path} />
                     ))}
                 </div>
 
-                <p className="text-secondary text-center text-sm mt-6 font-mono">
-                    Aguardando certificação de graduação!
-                </p>
+                {/* Seção do Diploma */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="flex flex-col items-center justify-center border-t border-white/10 pt-8"
+                >
+                    <p className="text-cyan-400 font-mono text-sm mb-6 tracking-widest uppercase flex items-center gap-2">
+                        <span className="animate-pulse">_</span> Arquivo Desbloqueado: Graduação
+                    </p>
+
+                    <div className="relative group cursor-pointer">
+                        {/* Efeito de brilho atrás da imagem (Neon Glow) */}
+                        <div className="absolute -inset-1 bg-gradient-to-r from-neon-purple to-cyan-400 rounded-lg blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+
+                        {/* Imagem do Diploma */}
+                        <img
+                            src={Diploma}
+                            alt="Diploma de Graduação"
+                            className="relative rounded-lg border border-white/20 w-full max-w-md object-cover shadow-xl transition-transform duration-300 group-hover:scale-[1.02]"
+                        />
+                    </div>
+
+                    <p className="text-secondary text-center text-xs mt-6 font-mono">
+                        Base de conhecimento atualizada com sucesso.
+                    </p>
+                </motion.div>
+
             </motion.div>
         </section>
     );
