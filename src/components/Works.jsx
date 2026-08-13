@@ -4,12 +4,17 @@ import { motion } from "framer-motion";
 import { Github } from "lucide-react";
 import { projects } from "../constants";
 
-const ProjectCard = ({ index, name, description, tags, image, source_code_link }) => {
+const ProjectCard = ({ index, name, description, tags, image, source_code_link, highlight }) => {
+    const isData = highlight === "data";
     return (
         <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.2 }}>
             <Tilt
                 options={{ max: 45, scale: 1, speed: 450 }}
-                className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full h-full min-h-[550px] flex flex-col justify-between border border-white/10 hover:border-neon-purple transition-colors shadow-card"
+                className={`bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full h-full min-h-[550px] flex flex-col justify-between border transition-colors shadow-card ${
+                    isData
+                        ? "border-cyan-400/40 hover:border-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.15)]"
+                        : "border-white/10 hover:border-neon-purple"
+                }`}
             >
                 <div>
                     <div className="relative w-full h-[230px]">
@@ -18,6 +23,12 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link }
                             alt={name}
                             className="w-full h-full object-cover rounded-2xl"
                         />
+
+                        {isData && (
+                            <div className="absolute top-3 left-3 text-[11px] font-mono uppercase tracking-widest px-2 py-1 rounded border text-cyan-400 border-cyan-400/50 bg-black-100/80 backdrop-blur-sm">
+                                Dados &amp; IA
+                            </div>
+                        )}
 
                         <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
                             <div

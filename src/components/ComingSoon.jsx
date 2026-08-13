@@ -1,105 +1,35 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Database, BrainCircuit, LayoutDashboard } from "lucide-react";
+import { BrainCircuit, CheckCircle2 } from "lucide-react";
 import Diploma from "../assets/images/Diploma.png";
 
-const futurePaths = [
+const completedProjects = [
     {
-        id: "ai",
-        title: "AI Scientist",
-        icon: BrainCircuit,
-        color: "bg-neon-purple",
-        textColor: "text-neon-purple",
-        status: "Calculando redes neurais...",
-        tagText: "Target Locked",
-        isActive: false,
+        id: "tc2",
+        title: "Pipeline de Dados — Indicador de Alfabetização",
+        subtitle: "Tech Challenge Fase 2",
     },
     {
-        id: "ds",
-        title: "Cientista de Dados com IA",
-        icon: Database,
-        color: "bg-blue-500",
-        textColor: "text-blue-500",
-        status: "Processando Big Data...",
-        tagText: "Target On",
-        isActive: true, // Ativa o brilho verde para o objetivo atual
-    },
-    {
-        id: "fe",
-        title: "Front End Engineer",
-        icon: LayoutDashboard,
-        color: "text-cyan-400",
-        bgColor: "bg-cyan-400",
-        textColor: "text-cyan-400",
-        status: "Renderizando interfaces...",
-        tagText: "Target Locked",
-        isActive: false,
+        id: "tc1",
+        title: "Modelo Preditivo de NPS para E-commerce",
+        subtitle: "Tech Challenge Fase 1",
     },
 ];
 
-// Componente da Barra de Progresso "Glitched"
-const GlitchBar = ({ color }) => (
-    <div className="h-2 w-full bg-black-100 rounded-full overflow-hidden relative">
-        {/* Barra de fundo estática */}
-        <div className={`h-full w-1/3 ${color} opacity-20 absolute left-0`}></div>
-
-        {/* Barra animada que vai e volta */}
-        <motion.div
-            className={`h-full ${color} shadow-[0_0_10px_currentColor]`}
-            animate={{
-                x: ["-100%", "300%"], // Move da esquerda para a direita
-                width: ["10%", "30%", "10%"] // Muda de tamanho
-            }}
-            transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "linear",
-            }}
-        />
-    </div>
+const ProjectStamp = ({ title, subtitle, index }) => (
+    <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.2 }}
+        className="flex items-start gap-3 bg-tertiary/50 border border-white/10 p-4 rounded-xl"
+    >
+        <CheckCircle2 className="text-green-400 shrink-0 mt-1" size={20} />
+        <div>
+            <p className="text-white font-bold text-sm md:text-base">{title}</p>
+            <p className="text-secondary text-xs font-mono mt-1">{subtitle}</p>
+        </div>
+    </motion.div>
 );
-
-const PathCard = ({ title, icon: Icon, color, textColor, bgColor, status, index, tagText, isActive }) => {
-    const barColor = bgColor || color;
-    const iconColorClass = textColor || "text-white";
-
-    // Estilo dinâmico: verde neon se estiver ativo, cinza apagado se estiver trancado
-    const tagStyle = isActive
-        ? "text-green-400 border-green-400/50 shadow-[0_0_10px_rgba(74,222,128,0.2)] bg-green-400/10"
-        : "text-secondary/50 border-secondary/20";
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            className={`bg-tertiary/50 border ${isActive ? 'border-green-400/30' : 'border-white/10'} p-4 rounded-xl relative overflow-hidden group hover:border-white/30 transition-all`}
-        >
-
-            <motion.div
-                className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent pointer-events-none"
-                animate={{ y: ["-100%", "100%"] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            />
-
-            <div className="flex items-center gap-4 mb-3">
-                <div className={`p-2 rounded-lg bg-black-200 border border-white/10 ${iconColorClass}`}>
-                    <Icon size={24} />
-                </div>
-                <h4 className="text-white font-bold text-lg">{title}</h4>
-            </div>
-
-            <p className="text-secondary text-sm mb-2 font-mono">{status}</p>
-
-            <GlitchBar color={barColor} />
-
-            {/* Tag Dinâmica (Target On / Target Locked) */}
-            <div className={`absolute top-2 right-2 text-[7.2px] font-mono uppercase tracking-widest px-2 py-1 rounded border ${tagStyle}`}>
-                {tagText}
-            </div>
-        </motion.div>
-    );
-}
 
 const ComingSoon = () => {
     return (
@@ -119,18 +49,29 @@ const ComingSoon = () => {
                             &gt;&gt; Incoming Transmission...
                         </p>
                         <h3 className="text-white font-black text-2xl md:text-3xl mt-2">
-                            Próximos Objetivos: <span className="text-neon-purple"> <br/> Pós-Graduação</span>
+                            Formação em <span className="text-neon-purple">Andamento</span>
                         </h3>
                     </div>
-                    <div className="font-mono text-xs text-yellow-500 animate-pulse bg-red-500/10 px-4 py-1 rounded border border-red-500/30">
-                        [STATUS: EM DESENVOLVIMENTO]
+                    <div className="font-mono text-xs text-green-400 animate-pulse bg-green-400/10 px-4 py-1 rounded border border-green-400/30">
+                        [STATUS: EM ANDAMENTO]
                     </div>
                 </div>
 
-                {/* Grid dos Caminhos Futuros */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-                    {futurePaths.map((path, index) => (
-                        <PathCard key={path.id} index={index} {...path} />
+                {/* Resumo direto do momento atual */}
+                <div className="flex items-center gap-4 mb-6">
+                    <div className="p-2 rounded-lg bg-black-200 border border-white/10 text-neon-purple">
+                        <BrainCircuit size={24} />
+                    </div>
+                    <p className="text-secondary text-sm md:text-base leading-relaxed">
+                        Pós-graduando em <strong className="text-white">AI Scientist</strong> pela FIAP — cursando,
+                        com 2 projetos aplicados entregues:
+                    </p>
+                </div>
+
+                {/* Projetos concluídos */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                    {completedProjects.map((project, index) => (
+                        <ProjectStamp key={project.id} index={index} {...project} />
                     ))}
                 </div>
 

@@ -14,7 +14,7 @@ const Hero = () => {
                     Oi, eu sou <span className="text-neon-purple">Vitor</span>
                 </h1>
                 <p className="mt-4 text-secondary text-[20px] max-w-lg leading-[30px] pointer-events-auto">
-                    Full Stack Developer especializado em React, Angular, C# e arquitetura de sistemas escaláveis.
+                    Full Stack Developer em transição para Dados & IA. Construo desde APIs e sistemas escaláveis (C#, Angular, React) até pipelines de dados e modelos de Machine Learning (Python, AWS, Airflow).
                 </p>
 
                 <div className="mt-8 flex gap-4 pointer-events-auto">

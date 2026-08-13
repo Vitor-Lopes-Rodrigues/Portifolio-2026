@@ -40,10 +40,9 @@ const About = () => {
                 className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
             >
                 Sou formado em Desenvolvimento de Sistemas pela ETEC e em Sistemas de Informação pela Universidade São Judas Tadeu.
-                Atualmente trabalho como desenvolvedor Full Stack com foco em <strong>C#, Angular e SQL</strong>.
+                Atuo como Full Stack Developer com foco em <strong>C#, Angular e SQL</strong>, e estou em transição para Engenharia de Dados e Ciência de Dados com IA através da pós-graduação em AI Scientist (FIAP).
                 <br /><br />
-                Tenho experiência sólida no desenvolvimento de aplicações web, APIs robustas, refatoração de código legado e modelagem de banco de dados.
-                Gosto de criar soluções que unem performance técnica com uma excelente experiência de usuário.
+                Tenho experiência sólida em desenvolvimento de aplicações web, APIs robustas, refatoração de código legado e modelagem de banco de dados. Nos últimos meses, tenho aplicado essa base construindo pipelines de dados em arquitetura Medalhão (Bronze/Silver/Gold) na AWS, com orquestração via Airflow, e modelos preditivos com Scikit-learn. Gosto de unir engenharia de software sólida com soluções orientadas a dados.
             </motion.p>
 
 

@@ -18,6 +18,33 @@ export const navLinks = [
 
 export const projects = [
     {
+        name: "Pipeline Híbrido de Dados — Indicador de Alfabetização",
+        description:
+            "Pipeline de engenharia de dados em arquitetura Medalhão (Bronze/Silver/Gold) na AWS, com ingestão batch e streaming, orquestração via Airflow e validação de qualidade de dados, para embasar análise de políticas públicas de alfabetização. Tech Challenge Fase 2 — Pós-graduação AI Scientist (FIAP), mai–jul 2026.",
+        tags: [
+            { name: "Python", color: "text-yellow-400" },
+            { name: "AWS", color: "text-orange-400" },
+            { name: "Airflow", color: "text-cyan-400" },
+            { name: "DataEngineering", color: "text-emerald-400" },
+        ],
+        image: "https://placehold.co/600x400/0EA5E9/FFF?text=Data+Pipeline",
+        source_code_link: "https://github.com/Vitor-Lopes-Rodrigues",
+        highlight: "data",
+    },
+    {
+        name: "Modelo Preditivo de NPS para E-commerce",
+        description:
+            "Modelo de classificação (Random Forest, Scikit-learn) para prever a satisfação do cliente (NPS) em cenário de e-commerce. Tech Challenge Fase 1 — Pós-graduação AI Scientist (FIAP), mar–mai 2026.",
+        tags: [
+            { name: "Python", color: "text-yellow-400" },
+            { name: "MachineLearning", color: "text-emerald-400" },
+            { name: "ScikitLearn", color: "text-orange-300" },
+        ],
+        image: "https://placehold.co/600x400/22C55E/FFF?text=NPS+Model",
+        source_code_link: "https://github.com/Vitor-Lopes-Rodrigues",
+        highlight: "data",
+    },
+    {
         name: "Sistema de Gestão de Férias",
         description:
             "Plataforma completa para RH gerenciar férias de colaboradores, incluindo aprovações de gestores, venda de dias e um gráfico de Gantt interativo.",
@@ -120,7 +147,7 @@ export const experiences = [
         points: [
             "Desenvolvimento full stack com C# e Angular.",
             "Atuação no sistema de catálogo de desenvolvimento.",
-            "Desenvolvimento de Web APls, e testes unitários (xUnit), usando linguagem c# e .NET Core(3.0+)",
+            "Desenvolvimento de Web APIs, e testes unitários (xUnit), usando linguagem c# e .NET Core(3.0+)",
             "Otimização de queries em SQL Server.",
             "Desenvolvimento web usando Angular 9+ (HTML, CSS, Typescript)"
         ],
@@ -155,6 +182,9 @@ export const technologies = [
     { name: "Docker", color: "text-blue-600" },
     { name: "Git", color: "text-red-400" },
     { name: "Linux", color: "text-yellow-600" },
+    { name: "AWS", color: "text-orange-400" },
+    { name: "Kubernetes", color: "text-blue-500" },
+    { name: "Airflow", color: "text-cyan-400" },
 ];
 
 
