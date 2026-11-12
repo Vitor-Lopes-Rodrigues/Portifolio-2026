@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Rocket, Info } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const NasaCard = () => {
+    const { t } = useLanguage();
     const [apod, setApod] = useState(null);
 
     useEffect(() => {
@@ -60,7 +62,7 @@ const NasaCard = () => {
                 <div className="mt-3 pt-3 border-t border-white/5 flex items-center gap-2">
                     <Info size={14} className="text-neon-cyan" />
                     <span className="text-[10px] text-neon-cyan uppercase tracking-wider">
-                Dados atualizados via satélite
+                {t.widgets.nasa.satelliteData}
             </span>
                 </div>
             </div>

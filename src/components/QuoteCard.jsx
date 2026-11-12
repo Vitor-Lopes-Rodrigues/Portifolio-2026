@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Quote, RefreshCw } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const QuoteCard = () => {
+    const { t } = useLanguage();
     const [quote, setQuote] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -39,7 +41,7 @@ const QuoteCard = () => {
 
             <div className="relative z-10 mt-4">
                 {loading ? (
-                    <p className="text-secondary text-sm animate-pulse">Carregando sabedoria...</p>
+                    <p className="text-secondary text-sm animate-pulse">{t.widgets.quote.loading}</p>
                 ) : (
                     <>
                         <p className="text-white text-sm md:text-md italic font-light leading-relaxed">
@@ -52,7 +54,7 @@ const QuoteCard = () => {
                             <button
                                 onClick={fetchQuote}
                                 className="text-secondary hover:text-white transition-colors"
-                                title="Nova Frase"
+                                title={t.widgets.quote.newQuote}
                             >
                                 <RefreshCw size={14} className={loading ? "animate-spin" : ""} />
                             </button>

@@ -2,9 +2,10 @@ import React from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 import { Github } from "lucide-react";
-import { projects } from "../constants";
+import { projectsMeta } from "../constants";
+import { useLanguage } from "../context/LanguageContext";
 
-const ProjectCard = ({ index, name, description, tags, image, source_code_link, highlight }) => {
+const ProjectCard = ({ index, name, description, tags, image, source_code_link, highlight, dataAiBadge, viewCode }) => {
     const isData = highlight === "data";
     return (
         <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.2 }}>
@@ -26,7 +27,7 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
 
                         {isData && (
                             <div className="absolute top-3 left-3 text-[11px] font-mono uppercase tracking-widest px-2 py-1 rounded border text-cyan-400 border-cyan-400/50 bg-black-100/80 backdrop-blur-sm">
-                                Dados &amp; IA
+                                {dataAiBadge}
                             </div>
                         )}
 
@@ -34,7 +35,7 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
                             <div
                                 onClick={() => window.open(source_code_link, "_blank")}
                                 className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:scale-110 transition-transform bg-black border border-white/20"
-                                title="Ver código no GitHub"
+                                title={viewCode}
                             >
                                 <Github className="w-1/2 h-1/2 text-white" />
                             </div>
@@ -60,11 +61,19 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
 };
 
 const Works = () => {
+    const { t } = useLanguage();
+    const projects = t.works.items.map((project, index) => ({
+        ...project,
+        ...projectsMeta[index],
+        dataAiBadge: t.works.dataAiBadge,
+        viewCode: t.works.viewCode,
+    }));
+
     return (
         <section id="projects" className="py-20 px-6 max-w-7xl mx-auto relative z-0">
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
-                <p className="text-secondary text-[14px] uppercase tracking-wider">Meu portfólio</p>
-                <h2 className="text-white font-black text-[50px] md:text-[60px]">Projetos.</h2>
+                <p className="text-secondary text-[14px] uppercase tracking-wider">{t.works.label}</p>
+                <h2 className="text-white font-black text-[50px] md:text-[60px]">{t.works.title}</h2>
             </motion.div>
 
             <div className="w-full flex">
@@ -74,9 +83,7 @@ const Works = () => {
                     transition={{ duration: 1, delay: 0.1 }}
                     className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
                 >
-                    Os projetos a seguir mostram minhas habilidades e experiência através de exemplos reais.
-                    Cada card possui um link direto para o repositório de código e demonstra minha capacidade
-                    de resolver problemas complexos com diferentes tecnologias.
+                    {t.works.intro}
                 </motion.p>
             </div>
 

@@ -2,27 +2,29 @@ import { motion } from "framer-motion";
 import DynamicHero3D from "./canvas/DynamicHero3D";
 // 1. Importe o hook do tema
 import { useTheme } from "../context/ThemeContext";
+import { useLanguage } from "../context/LanguageContext";
 
 const Hero = () => {
     // 2. Use o tema
     const { theme } = useTheme();
+    const { t } = useLanguage();
 
     return (
         <section className="relative w-full h-screen mx-auto flex flex-col md:flex-row items-center justify-center overflow-hidden">
             <div className="flex flex-col justify-center items-start w-full md:w-1/2 px-6 md:px-16 z-10 pointer-events-none">
                 <h1 className="text-5xl md:text-7xl font-bold text-white pointer-events-auto">
-                    Oi, eu sou <span className="text-neon-purple">Vitor</span>
+                    {t.hero.greeting} <span className="text-neon-purple">Vitor</span>
                 </h1>
                 <p className="mt-4 text-secondary text-[20px] max-w-lg leading-[30px] pointer-events-auto">
-                    Full Stack Developer em transição para Dados & IA. Construo desde APIs e sistemas escaláveis (C#, Angular, React) até pipelines de dados e modelos de Machine Learning (Python, AWS, Airflow).
+                    {t.hero.subtitle}
                 </p>
 
                 <div className="mt-8 flex gap-4 pointer-events-auto">
                     <a href="#projects" className="bg-neon-purple text-white py-3 px-8 rounded-full font-bold shadow-[0_0_15px_#915eff] hover:scale-105 transition-transform">
-                        Ver Projetos
+                        {t.hero.ctaProjects}
                     </a>
                     <a href="#contact" className="border border-white text-white py-3 px-8 rounded-full font-bold hover:bg-white hover:text-primary transition-colors">
-                        Contato
+                        {t.hero.ctaContact}
                     </a>
                 </div>
             </div>

@@ -1,8 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { socialLinks } from "../constants";
+import { useLanguage } from "../context/LanguageContext";
 
 const Contact = () => {
+    const { t } = useLanguage();
+
     return (
         <section id="contact" className="py-20 px-6 max-w-7xl mx-auto relative z-0 flex flex-col items-center justify-center min-h-[60vh]">
 
@@ -13,11 +16,10 @@ const Contact = () => {
                 transition={{ duration: 0.5 }}
                 className="text-center mb-16"
             >
-                <p className="text-secondary text-[14px] uppercase tracking-wider">Entre em contato</p>
-                <h3 className="text-white font-black text-[40px] md:text-[50px]">Bora tomar um cafezinho virtual?</h3>
+                <p className="text-secondary text-[14px] uppercase tracking-wider">{t.contact.label}</p>
+                <h3 className="text-white font-black text-[40px] md:text-[50px]">{t.contact.title}</h3>
                 <p className="mt-4 text-secondary text-[16px] max-w-xl mx-auto leading-[30px]">
-                    Estou disponível para projetos freelance, oportunidades CLT ou apenas para trocar uma ideia sobre tecnologia.
-                    Escolha sua plataforma preferida abaixo:
+                    {t.contact.paragraph}
                 </p>
             </motion.div>
 
@@ -39,7 +41,7 @@ const Contact = () => {
                         </div>
                         <div className="text-center">
                             <h4 className="text-white font-bold text-xl mb-1">{social.name}</h4>
-                            <p className="text-secondary text-sm">Clique para acessar</p>
+                            <p className="text-secondary text-sm">{t.contact.clickToAccess}</p>
                         </div>
                     </motion.a>
                 ))}

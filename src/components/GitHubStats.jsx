@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Github, Users, FolderGit2, MapPin } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const GitHubStats = () => {
+    const { t } = useLanguage();
     const [stats, setStats] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -60,7 +62,7 @@ const GitHubStats = () => {
                         <h3 className="text-white font-bold text-2xl">@{stats.login}</h3>
                     </div>
                     <p className="text-secondary text-sm mb-4">
-                        "{stats.bio || "Full Stack Developer"}"
+                        "{stats.bio || t.github.defaultBio}"
                     </p>
 
                     {/* Grid de Estatísticas */}
@@ -68,16 +70,16 @@ const GitHubStats = () => {
                         <div className="flex items-center gap-2 bg-tertiary px-3 py-2 rounded-lg border border-white/5">
                             <FolderGit2 size={16} className="text-neon-cyan" />
                             <span className="text-white font-bold">{stats.public_repos}</span>
-                            <span className="text-secondary text-xs uppercase">Repos</span>
+                            <span className="text-secondary text-xs uppercase">{t.github.repos}</span>
                         </div>
                         <div className="flex items-center gap-2 bg-tertiary px-3 py-2 rounded-lg border border-white/5">
                             <Users size={16} className="text-green-400" />
                             <span className="text-white font-bold">{stats.followers}</span>
-                            <span className="text-secondary text-xs uppercase">Seguidores</span>
+                            <span className="text-secondary text-xs uppercase">{t.github.followers}</span>
                         </div>
                         <div className="flex items-center gap-2 bg-tertiary px-3 py-2 rounded-lg border border-white/5">
                             <MapPin size={16} className="text-red-400" />
-                            <span className="text-secondary text-xs">{stats.location || "Brasil"}</span>
+                            <span className="text-secondary text-xs">{stats.location || t.github.defaultLocation}</span>
                         </div>
                     </div>
                 </div>
@@ -89,7 +91,7 @@ const GitHubStats = () => {
                     rel="noreferrer"
                     className="bg-gradient-to-r from-neon-purple to-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:scale-105 transition-transform"
                 >
-                    Seguir
+                    {t.github.follow}
                 </a>
             </div>
         </motion.div>

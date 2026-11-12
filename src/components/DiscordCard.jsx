@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MessageSquare, Gamepad2, Moon, Sun, Disc } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const DiscordCard = () => {
+    const { t } = useLanguage();
     const [status, setStatus] = useState(null);
     const userId = "331979807665553410";
 
@@ -55,7 +57,7 @@ const DiscordCard = () => {
                 <div>
                     <h4 className="text-white font-bold text-sm">@{status.discord_user.username}</h4>
                     <p className="text-secondary text-xs capitalize flex items-center gap-1">
-                        {status.discord_status === 'dnd' ? 'Não Perturbe' : status.discord_status}
+                        {status.discord_status === 'dnd' ? t.widgets.discord.dnd : status.discord_status}
                     </p>
                 </div>
                 <MessageSquare className="ml-auto text-[#5865F2] opacity-50" size={20} />
@@ -65,7 +67,7 @@ const DiscordCard = () => {
             {status.activities && status.activities.length > 0 ? (
                 <div className="bg-black/30 p-3 rounded-lg border border-white/5 mt-2">
                     <p className="text-[#5865F2] text-[10px] font-bold uppercase tracking-wider mb-1">
-                        Atividade Atual
+                        {t.widgets.discord.currentActivity}
                     </p>
                     <div className="flex items-center gap-2">
                         {status.activities[0].name === "Spotify" ? <Disc size={16} className="text-green-500"/> : <Gamepad2 size={16} className="text-white"/>}
@@ -81,7 +83,7 @@ const DiscordCard = () => {
                 </div>
             ) : (
                 <div className="bg-black/30 p-3 rounded-lg border border-white/5 mt-2">
-                    <p className="text-secondary text-xs italic">Nenhuma atividade detectada no momento.</p>
+                    <p className="text-secondary text-xs italic">{t.widgets.discord.noActivity}</p>
                 </div>
             )}
         </motion.div>

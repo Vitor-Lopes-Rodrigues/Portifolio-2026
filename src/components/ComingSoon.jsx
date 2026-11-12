@@ -2,19 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { BrainCircuit, CheckCircle2 } from "lucide-react";
 import Diploma from "../assets/images/Diploma.png";
-
-const completedProjects = [
-    {
-        id: "tc2",
-        title: "Pipeline de Dados — Indicador de Alfabetização",
-        subtitle: "Tech Challenge Fase 2",
-    },
-    {
-        id: "tc1",
-        title: "Modelo Preditivo de NPS para E-commerce",
-        subtitle: "Tech Challenge Fase 1",
-    },
-];
+import { useLanguage } from "../context/LanguageContext";
 
 const ProjectStamp = ({ title, subtitle, index }) => (
     <motion.div
@@ -32,6 +20,9 @@ const ProjectStamp = ({ title, subtitle, index }) => (
 );
 
 const ComingSoon = () => {
+    const { t } = useLanguage();
+    const cs = t.comingSoon;
+
     return (
         <section className="py-10 px-6 max-w-4xl mx-auto relative z-10 my-20">
             {/* Container estilo "Terminal" com borda neon piscante */}
@@ -46,14 +37,14 @@ const ComingSoon = () => {
                 <div className="mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/10 pb-4">
                     <div>
                         <p className="text-cyan-400 font-mono text-sm tracking-[0.2em] uppercase animate-pulse">
-                            &gt;&gt; Incoming Transmission...
+                            {cs.transmission}
                         </p>
                         <h3 className="text-white font-black text-2xl md:text-3xl mt-2">
-                            Formação em <span className="text-neon-purple">Andamento</span>
+                            {cs.titlePrefix}<span className="text-neon-purple">{cs.titleHighlight}</span>
                         </h3>
                     </div>
                     <div className="font-mono text-xs text-green-400 animate-pulse bg-green-400/10 px-4 py-1 rounded border border-green-400/30">
-                        [STATUS: EM ANDAMENTO]
+                        {cs.status}
                     </div>
                 </div>
 
@@ -63,14 +54,13 @@ const ComingSoon = () => {
                         <BrainCircuit size={24} />
                     </div>
                     <p className="text-secondary text-sm md:text-base leading-relaxed">
-                        Pós-graduando em <strong className="text-white">AI Scientist</strong> pela FIAP — cursando,
-                        com 2 projetos aplicados entregues:
+                        {cs.introBefore}<strong className="text-white">{cs.introStrong}</strong>{cs.introAfter}
                     </p>
                 </div>
 
                 {/* Projetos concluídos */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-                    {completedProjects.map((project, index) => (
+                    {cs.completedProjects.map((project, index) => (
                         <ProjectStamp key={project.id} index={index} {...project} />
                     ))}
                 </div>
@@ -83,7 +73,7 @@ const ComingSoon = () => {
                     className="flex flex-col items-center justify-center border-t border-white/10 pt-8"
                 >
                     <p className="text-cyan-400 font-mono text-sm mb-6 tracking-widest uppercase flex items-center gap-2">
-                        <span className="animate-pulse">_</span> Arquivo Desbloqueado: Graduação
+                        <span className="animate-pulse">_</span> {cs.fileUnlocked}
                     </p>
 
                     <div className="relative group cursor-pointer">
@@ -93,13 +83,13 @@ const ComingSoon = () => {
                         {/* Imagem do Diploma */}
                         <img
                             src={Diploma}
-                            alt="Diploma de Graduação"
+                            alt={cs.diplomaAlt}
                             className="relative rounded-lg border border-white/20 w-full max-w-md object-cover shadow-xl transition-transform duration-300 group-hover:scale-[1.02]"
                         />
                     </div>
 
                     <p className="text-secondary text-center text-xs mt-6 font-mono">
-                        Base de conhecimento atualizada com sucesso.
+                        {cs.diplomaFooter}
                     </p>
                 </motion.div>
 

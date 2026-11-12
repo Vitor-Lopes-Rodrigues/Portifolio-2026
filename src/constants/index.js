@@ -1,4 +1,4 @@
-import { Code2, Server, Database, Layout } from 'lucide-react';
+import { Code2, Database, Layout } from 'lucide-react';
 import { Linkedin, Instagram, Mail, MessageCircle } from 'lucide-react';
 import Mith from '../assets/images/Mith.png';
 import GerenciarEstoque from '../assets/images/GerenciarEstoque.png';
@@ -7,20 +7,38 @@ import CopaDoMundo from '../assets/images/CopaDoMundo.png';
 import BraFrontEnd from '../assets/images/BrasillinkFrontEnd.png';
 import HorizonFly from '../assets/images/HorizonFly.png';
 
+// Dados independentes de idioma. O texto (nome, descrição, etc.) vem de src/constants/translations.js
+// e é combinado com estes dados pela ordem (mesmo índice) dentro de cada componente.
 
+export const navLinkIds = ["about", "experience", "projects", "contact"];
 
-export const navLinks = [
-    { id: "about", title: "Sobre" },
-    { id: "experience", title: "Experiência" },
-    { id: "projects", title: "Projetos" },
-    { id: "contact", title: "Contato" },
-];
+export const serviceIcons = [Code2, Database, Layout];
 
-export const projects = [
+export const projectsMeta = [
     {
-        name: "Pipeline Híbrido de Dados — Indicador de Alfabetização",
-        description:
-            "Pipeline de engenharia de dados em arquitetura Medalhão (Bronze/Silver/Gold) na AWS, com ingestão batch e streaming, orquestração via Airflow e validação de qualidade de dados, para embasar análise de políticas públicas de alfabetização. Tech Challenge Fase 2 — Pós-graduação AI Scientist (FIAP), mai–jul 2026.",
+        tags: [
+            { name: "Python", color: "text-yellow-400" },
+            { name: "LangChain", color: "text-teal-400" },
+            { name: "Gemini", color: "text-blue-400" },
+            { name: "ChromaDB", color: "text-pink-400" },
+            { name: "Streamlit", color: "text-red-400" },
+        ],
+        image: "https://placehold.co/600x400/8B5CF6/FFF?text=RAG+Voice+of+Customer",
+        source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/1IAST-Tech-Challenge-Fase4",
+        highlight: "data",
+    },
+    {
+        tags: [
+            { name: "Python", color: "text-yellow-400" },
+            { name: "ScikitLearn", color: "text-orange-300" },
+            { name: "SHAP", color: "text-fuchsia-400" },
+            { name: "Docker", color: "text-blue-600" },
+        ],
+        image: "https://placehold.co/600x400/F59E0B/FFF?text=Risco+Educacional",
+        source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/1IAST-Tech-Challenge-Fase3",
+        highlight: "data",
+    },
+    {
         tags: [
             { name: "Python", color: "text-yellow-400" },
             { name: "AWS", color: "text-orange-400" },
@@ -32,9 +50,6 @@ export const projects = [
         highlight: "data",
     },
     {
-        name: "Modelo Preditivo de NPS para E-commerce",
-        description:
-            "Modelo de classificação (Random Forest, Scikit-learn) para prever a satisfação do cliente (NPS) em cenário de e-commerce. Tech Challenge Fase 1 — Pós-graduação AI Scientist (FIAP), mar–mai 2026.",
         tags: [
             { name: "Python", color: "text-yellow-400" },
             { name: "MachineLearning", color: "text-emerald-400" },
@@ -45,9 +60,6 @@ export const projects = [
         highlight: "data",
     },
     {
-        name: "Sistema de Gestão de Férias",
-        description:
-            "Plataforma completa para RH gerenciar férias de colaboradores, incluindo aprovações de gestores, venda de dias e um gráfico de Gantt interativo.",
         tags: [
             { name: "Angular", color: "text-red-500" },
             { name: "C#", color: "text-purple-500" },
@@ -57,9 +69,6 @@ export const projects = [
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues",
     },
     {
-        name: "MITH - Influencers",
-        description:
-            "Site especial para os influenciadores da marca MITH. A MITH é uma loja que se destaca pela venda de roupas fitness funcionais e estilosas.",
         tags: [
             { name: "React", color: "text-cyan-400" },
         ],
@@ -67,9 +76,6 @@ export const projects = [
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/Mith-Influencers",
     },
     {
-        name: "BrasilInk",
-        description:
-            "Aplicação Web voltada à divulgação de tatuadores e seus trabalhos artísticos.",
         tags: [
             { name: "Angular", color: "text-red-500" },
         ],
@@ -77,9 +83,6 @@ export const projects = [
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/BrasilInk",
     },
     {
-        name: "BrasilInk_Api",
-        description:
-            "Backend robusto da aplicação BrasilInk.",
         tags: [
             { name: "Kotlin", color: "text-orange-400" },
         ],
@@ -87,9 +90,6 @@ export const projects = [
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/BrasilInk_Api",
     },
     {
-        name: "Horizon Fly",
-        description:
-            "Desenvolvimento de e-commerce em Asp.Net Framework (MVC) com conexão MySQL Workbench e Front-end dinâmico.",
         tags: [
             { name: "Asp.Net", color: "text-indigo-400" },
             { name: "MySQL", color: "text-orange-300" },
@@ -98,9 +98,6 @@ export const projects = [
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/Ecommerce_HorizonFly",
     },
     {
-        name: "Odontologia USP",
-        description:
-            "Criação de portfólio para um futuro formado em odontologia, desenvolvido com interface moderna.",
         tags: [
             { name: "React + Vue", color: "text-emerald-400" },
         ],
@@ -108,9 +105,6 @@ export const projects = [
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/Odontologia_USP_Igor",
     },
     {
-        name: "Gerenciamento Estoque",
-        description:
-            "Projeto de gerenciamento (CRUD) de estoque com segurança de login e senha.",
         tags: [
             { name: "Python", color: "text-yellow-400" },
         ],
@@ -118,9 +112,6 @@ export const projects = [
         source_code_link: "https://github.com/Vitor-Lopes-Rodrigues/Odontologia_USP_Igor",
     },
     {
-        name: "Copa Do Mundo",
-        description:
-            "Aplicação Spring Boot com banco PostgreSQL e front-end dinâmico, totalmente containerizada.",
         tags: [
             { name: "Spring Boot", color: "text-green-500" },
             { name: "PostgreSQL", color: "text-sky-400" },
@@ -131,40 +122,9 @@ export const projects = [
     },
 ];
 
-export const services = [
-    { title: "Full Stack Developer", icon: Code2 },
-    // { title: "Backend Specialist", icon: Server },
-    { title: "Database Architect", icon: Database },
-    { title: "Frontend UI/UX", icon: Layout },
-];
-
-export const experiences = [
-    {
-        title: "Desenvolvedor Full Stack",
-        company_name: "GFT Technologies",
-        date: "Out 2024 - Atual",
-        iconBg: "#383E56",
-        points: [
-            "Desenvolvimento full stack com C# e Angular.",
-            "Atuação no sistema de catálogo de desenvolvimento.",
-            "Desenvolvimento de Web APIs, e testes unitários (xUnit), usando linguagem c# e .NET Core(3.0+)",
-            "Otimização de queries em SQL Server.",
-            "Desenvolvimento web usando Angular 9+ (HTML, CSS, Typescript)"
-        ],
-    },
-
-
-    {
-        title: "Programador de Sistemas",
-        company_name: "Cenpros",
-        date: "Jul 2022 - Out 2024",
-        iconBg: "#E6DEDD",
-        points: [
-            "Foco em interfaces, reestruturação de código e novos modelos de banco.",
-            "Integração complexa de sistemas legados.",
-            "Aprendizado contínuo de novas stacks."
-        ],
-    },
+export const experiencesMeta = [
+    { iconBg: "#383E56" },
+    { iconBg: "#E6DEDD" },
 ];
 
 export const technologies = [

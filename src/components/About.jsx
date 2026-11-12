@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { services } from "../constants";
+import { serviceIcons } from "../constants";
+import { useLanguage } from "../context/LanguageContext";
 import GitHubStats from "./GitHubStats";
 
 
@@ -26,11 +27,14 @@ const ServiceCard = ({ index, title, icon: Icon }) => (
 );
 
 const About = () => {
+    const { t } = useLanguage();
+    const services = t.about.services.map((service, index) => ({ ...service, icon: serviceIcons[index] }));
+
     return (
         <section id="about" className="py-20 px-6 max-w-7xl mx-auto relative z-0">
             <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }}>
-                <p className="text-secondary text-[14px] uppercase tracking-wider">Introdução</p>
-                <h2 className="text-white font-black text-[50px] md:text-[60px]">Sobre mim.</h2>
+                <p className="text-secondary text-[14px] uppercase tracking-wider">{t.about.label}</p>
+                <h2 className="text-white font-black text-[50px] md:text-[60px]">{t.about.title}</h2>
             </motion.div>
 
             <motion.p
@@ -39,10 +43,9 @@ const About = () => {
                 transition={{ duration: 1, delay: 0.2 }}
                 className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
             >
-                Sou formado em Desenvolvimento de Sistemas pela ETEC e em Sistemas de Informação pela Universidade São Judas Tadeu.
-                Atuo como Full Stack Developer com foco em <strong>C#, Angular e SQL</strong>, e estou em transição para Engenharia de Dados e Ciência de Dados com IA através da pós-graduação em AI Scientist (FIAP).
+                {t.about.paragraph1}
                 <br /><br />
-                Tenho experiência sólida em desenvolvimento de aplicações web, APIs robustas, refatoração de código legado e modelagem de banco de dados. Nos últimos meses, tenho aplicado essa base construindo pipelines de dados em arquitetura Medalhão (Bronze/Silver/Gold) na AWS, com orquestração via Airflow, e modelos preditivos com Scikit-learn. Gosto de unir engenharia de software sólida com soluções orientadas a dados.
+                {t.about.paragraph2}
             </motion.p>
 
 

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { navLinks } from '../assets/constants/index.js';
+import { navLinkIds } from '../constants';
 import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
 // 1. IMPORTAR O CONTEXTO DO TEMA
 import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/LanguageContext';
 
-const GamerModeTooltip = () => (
+const GamerModeTooltip = ({ label }) => (
     <motion.div
         initial={{ opacity: 0, y: 10, scale: 0.8 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -22,7 +24,7 @@ const GamerModeTooltip = () => (
         <div className="relative bg-gradient-to-r from-neon-purple to-blue-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-[0_0_15px_#915eff] border border-white/20">
             <div className="absolute -top-1 right-6 w-2 h-2 bg-neon-purple rotate-45 border-t border-l border-white/20"></div>
             <span className="flex items-center gap-1">
-                Modo Gamer <span className="animate-bounce">🎮</span>
+                {label} <span className="animate-bounce">🎮</span>
             </span>
         </div>
     </motion.div>
@@ -35,6 +37,8 @@ const Navbar = () => {
 
     // 2. PEGAR O TEMA ATUAL
     const { theme } = useTheme();
+    const { t } = useLanguage();
+    const navLinks = navLinkIds.map((id) => ({ id, title: t.nav[id] }));
 
     useEffect(() => {
         const handleScroll = () => {
@@ -67,7 +71,7 @@ const Navbar = () => {
                 >
                     <p className='text-white text-[18px] font-bold cursor-pointer flex'>
                         Vitor &nbsp;
-                        <span className='sm:block hidden'> | Full Stack Dev</span>
+                        <span className='sm:block hidden'> | {t.navTagline}</span>
                     </p>
                 </a>
 
@@ -85,10 +89,11 @@ const Navbar = () => {
                         </li>
                     ))}
 
-                    <li className="border-l border-white/20 pl-8 relative group">
+                    <li className="flex items-center gap-4 border-l border-white/20 pl-8 relative group">
+                        <LanguageToggle />
                         <ThemeToggle />
                         {/* 3. CONDIÇÃO: SÓ MOSTRA SE O TEMA FOR 'SPACE' */}
-                        {theme === 'space' && <GamerModeTooltip />}
+                        {theme === 'space' && <GamerModeTooltip label={t.gamerMode} />}
                     </li>
                 </ul>
 
@@ -122,13 +127,14 @@ const Navbar = () => {
                                 </li>
                             ))}
 
-                            <li className="w-full pt-4 border-t border-white/10 flex justify-center mt-2 relative">
+                            <li className="w-full pt-4 border-t border-white/10 flex justify-center items-center gap-4 mt-2 relative">
+                                <LanguageToggle />
                                 <ThemeToggle />
                                 {/* 4. MESMA CONDIÇÃO NO MOBILE */}
                                 {theme === 'space' && (
                                     <div className="absolute top-12 left-1/2 -translate-x-1/2 w-max">
                                         <div className="bg-neon-purple text-white text-[10px] px-2 py-1 rounded animate-bounce">
-                                            Modo Gamer 🎮
+                                            {t.gamerMode} 🎮
                                         </div>
                                     </div>
                                 )}

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { experiences } from "../constants";
+import { experiencesMeta } from "../constants";
+import { useLanguage } from "../context/LanguageContext";
 
 const ExperienceCard = ({ experience, index }) => (
     <motion.div
@@ -34,11 +35,14 @@ const ExperienceCard = ({ experience, index }) => (
 );
 
 const Experience = () => {
+    const { t } = useLanguage();
+    const experiences = t.experience.items.map((exp, index) => ({ ...exp, ...experiencesMeta[index] }));
+
     return (
         <section id="experience" className="py-20 px-6 max-w-7xl mx-auto">
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
-                <p className="text-secondary text-center uppercase tracking-wider">Bagagem profissional!</p>
-                <h2 className="text-white font-black text-center text-[40px] mb-16">Experiência Profissional.</h2>
+                <p className="text-secondary text-center uppercase tracking-wider">{t.experience.label}</p>
+                <h2 className="text-white font-black text-center text-[40px] mb-16">{t.experience.title}</h2>
             </motion.div>
 
             <div className="mt-10 flex flex-col">

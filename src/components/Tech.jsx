@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { technologies } from "../constants";
+import { useLanguage } from "../context/LanguageContext";
 
 const HexagonCard = ({ index, name }) => {
     return (
@@ -41,6 +42,8 @@ const HexagonCard = ({ index, name }) => {
 };
 
 const Tech = () => {
+    const { t } = useLanguage();
+
     return (
         <section className="py-20 flex flex-col items-center justify-center relative z-10">
             <motion.div
@@ -50,10 +53,10 @@ const Tech = () => {
                 className="mb-12 text-center"
             >
                 <p className="text-neon-cyan font-mono text-sm tracking-[0.2em] uppercase mb-2">
-                    &lt;System.Modules /&gt;
+                    {t.tech.kicker}
                 </p>
                 <h2 className="text-white font-black text-[40px] drop-shadow-[0_0_10px_rgba(145,94,255,0.5)]">
-                    Stack Tecnológico
+                    {t.tech.title}
                 </h2>
             </motion.div>
 

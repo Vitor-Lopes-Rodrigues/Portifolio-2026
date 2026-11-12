@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -21,7 +22,7 @@ import GamingVideoBackground from "./components/GamingVideoBackground.jsx";
 
 const AppContent = () => {
     const { theme } = useTheme();
-    console.log("TEMA ATUAL:", theme);
+    const { t } = useLanguage();
 
     return (
         // MUDANÇA 1: bg-primary removido daqui. Agora é bg-transparent.
@@ -57,7 +58,7 @@ const AppContent = () => {
 
                     <div className="mt-20 w-full max-w-7xl px-6">
                         <p className="text-secondary text-center text-sm uppercase tracking-wider mb-8">
-                            Dashboard em Tempo Real
+                            {t.widgets.dashboardLabel}
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
                             <DiscordCard />
@@ -70,7 +71,7 @@ const AppContent = () => {
             </div>
 
             <footer className="py-5 text-center text-secondary text-sm bg-primary border-t border-white/10 relative z-10">
-                <p>&copy; 2025 Vitor Lopes. Feito com React, Three.js & Tailwind.</p>
+                <p>{t.footer}</p>
             </footer>
         </div>
     );
@@ -78,11 +79,13 @@ const AppContent = () => {
 
 const App = () => {
     return (
-        <ThemeProvider>
-            <BrowserRouter>
-                <AppContent />
-            </BrowserRouter>
-        </ThemeProvider>
+        <LanguageProvider>
+            <ThemeProvider>
+                <BrowserRouter>
+                    <AppContent />
+                </BrowserRouter>
+            </ThemeProvider>
+        </LanguageProvider>
     );
 }
 
